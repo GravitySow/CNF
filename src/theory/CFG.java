@@ -33,9 +33,8 @@ public class CFG {
             //System.out.println(z[1]);
             for(int j =  0;j < 2 ;j++){
                 if(z[j] == null) break;
-                g[i][j] = z[j];
+                g[i][j+1] = z[j];
             }
-            
         }
         String str = in.nextLine();
         int n2 = str.length();
@@ -77,15 +76,13 @@ public class CFG {
                             for (int z = 1; z <= n; z++) {
                                 boolean c = false;
                                 //System.out.println(s);
-                                if (s.equals(g[z][1])) {
-                                    //System.out.println("xxx");
-                                    c = true;
+                                for(int z2 = 1;z2<3;z2++){
+                                    if(g[z][z2] == null) break;
+                                    if(s.equals(g[z][z2])){
+                                        c = true;
+                                    }
                                 }
-                                if (s.equals(g[z][2])) {
-                                    //System.out.println("xxx");
-                                    c = true;
-                                }
-                                if (c) {
+                                if(c) {
                                     if (!ans[i][j].equals("")) {
                                         ans[i][j] += ",";
                                     }
