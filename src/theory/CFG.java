@@ -31,15 +31,19 @@ public class CFG {
             String z[] = y[1].split("\\|");
             //System.out.println(z[0]);
             //System.out.println(z[1]);
-            for(int j =  0;j < 2 ;j++){
-                if(z[j] == null) break;
-                g[i][j+1] = z[j];
+            for (int j = 0; j < 2; j++) {
+                try {
+                    g[i][j + 1] = z[j];
+                } catch (Exception e) {
+                    //System.out.println(e);
+                    break;
+                }
             }
         }
         String str = in.nextLine();
         int n2 = str.length();
         String[][] ans = new String[n2 + 1][n2 + 1];
-        
+
         for (int i = 1; i <= n2; i++) {
             for (int j = 1; j <= n2; j++) {
                 ans[i][j] = "";
@@ -76,13 +80,15 @@ public class CFG {
                             for (int z = 1; z <= n; z++) {
                                 boolean c = false;
                                 //System.out.println(s);
-                                for(int z2 = 1;z2<3;z2++){
-                                    if(g[z][z2] == null) break;
-                                    if(s.equals(g[z][z2])){
+                                for (int z2 = 1; z2 < 3; z2++) {
+                                    if (g[z][z2] == null) {
+                                        break;
+                                    }
+                                    if (s.equals(g[z][z2])) {
                                         c = true;
                                     }
                                 }
-                                if(c) {
+                                if (c) {
                                     if (!ans[i][j].equals("")) {
                                         ans[i][j] += ",";
                                     }
