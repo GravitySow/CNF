@@ -50,6 +50,7 @@ public class CFG {
             }
         }
         //First Algorithm
+        System.out.println(n2+" "+n);
         for (int i = 1; i <= n2; i++) {
             String s = "" + str.charAt(i - 1);
             for (int j = 1; j <= n; j++) {
@@ -86,10 +87,13 @@ public class CFG {
                                     }
                                     if (s.equals(g[z][z2])) {
                                         c = true;
+                                        System.out.println(l+" "+i+" "+j+" "+k+" "+s1[i2] + "" + s2[j2]+"   "+g[z][0]);
                                     }
                                 }
                                 if (c) {
+                                    
                                     if (!ans[i][j].equals("")) {
+                                        
                                         ans[i][j] += ",";
                                     }
                                     ans[i][j] += g[z][0];
@@ -103,7 +107,10 @@ public class CFG {
 
         for (int i = 1; i <= n2; i++) {
             for (int j = 1; j <= n2; j++) {
-                System.out.print(ans[i][j] + " ");
+                System.out.print(ans[i][j] + "");
+                if(ans[i][j].equals("")){
+                    System.out.print(" ");
+                }
             }
             System.out.println("");
         }
