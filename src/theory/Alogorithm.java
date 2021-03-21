@@ -3,6 +3,7 @@
  */
 package theory;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -16,14 +17,44 @@ public class Alogorithm {
     String[][] ans;
     int n;
     int n2;
+    boolean c;
     //Input Rule and String
     public Alogorithm(String[][] g, String str) {
         this.g = g;
+        n = g.length - 1;
         this.str = str;
         n2 = str.length();
-        n = g.length - 1;
         this.ans = new String[n2 + 1][n2 + 1];
     }
+
+    //Input Rule
+    public Alogorithm(String[][] g) {
+        this.g = g;
+        n = g.length - 1;
+    }
+
+    public Alogorithm() {
+    }
+    
+    public void setStr(String str){
+        this.str = str;
+        n2 = str.length();
+    }
+    public String[][] cal(String[][] g, String str){
+        this.g = g;
+        n = g.length - 1;
+        this.str = str;
+        n2 = str.length();
+        this.ans = new String[n2 + 1][n2 + 1];
+        
+        setArray(ans);
+        addTable();
+        calToTable();
+        check();
+        return ans;
+    }
+    
+    //Change
     //Frist Alogotithm
     public void addTable() {
         for (int i = 1; i <= n2; i++) {
@@ -40,6 +71,7 @@ public class Alogorithm {
             }
         }
     }
+
     //Second Alogorithm
     public void calToTable() {
         for (int l = 2; l <= n2; l++) {
@@ -76,22 +108,39 @@ public class Alogorithm {
             }
         }
     }
+
     //Set Array to spec
-    public void setArray(String ans[][]){
+    public void setArray(String ans[][]) {
         for (int i = 1; i < ans.length; i++) {
             for (int j = 1; j < ans[i].length; j++) {
                 ans[i][j] = "";
             }
         }
     }
+
+    //Check CYK
+    public void check() {
+        c = false;
+        for (int i = 1; i < ans.length; i++) {
+            String[] x = ans[1][i].split(",");
+            for (int j = 0; j < x.length; j++) {
+                if (x[j].equals("S")) {
+                    //System.out.println("Acc");
+                    c = true;
+                }
+            }
+        }
+    }
+
     //Use Alogorithm 
     public String[][] cal() {
         setArray(ans);
         addTable();
         calToTable();
+        check();
         return ans;
     }
-
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = Integer.parseInt(in.nextLine());
@@ -111,10 +160,12 @@ public class Alogorithm {
                 }
             }
         }
+        findByNumber f = new findByNumber(g);
+        f.find();
         String str = in.nextLine();
         Alogorithm a = new Alogorithm(g, str);
         String[][] ans = a.cal();
-
+        
         for (int i = 1; i < ans.length; i++) {
             for (int j = 1; j < ans[i].length; j++) {
                 System.out.print(ans[i][j] + "");
