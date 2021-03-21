@@ -3,9 +3,9 @@
  */
 package theory;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 /**
  *
  * @author gravitys
@@ -18,6 +18,7 @@ public class Alogorithm {
     int n;
     int n2;
     boolean c;
+    HashMap<String, ArrayList<String>> create = new HashMap<String, ArrayList<String>>();
     //Input Rule and String
     public Alogorithm(String[][] g, String str) {
         this.g = g;
@@ -91,10 +92,16 @@ public class Alogorithm {
                                     }
                                     if (s.equals(g[z][z2])) {
                                         c = true;
+                                        ArrayList<String> cre = new ArrayList<String>();
+                                        if(cre.contains(i+","+j)){
+                                            cre = create.get(i+","+j);
+                                        }
+                                        cre.add(g[z][z2]);
+                                        create.put(i+","+j,cre);
                                     }
                                 }
                                 if (c) {
-
+                                    
                                     if (!ans[i][j].equals("")) {
 
                                         ans[i][j] += ",";
@@ -161,7 +168,7 @@ public class Alogorithm {
             }
         }
         findByNumber f = new findByNumber(g);
-        f.find();
+        f.find(10);
         String str = in.nextLine();
         Alogorithm a = new Alogorithm(g, str);
         String[][] ans = a.cal();

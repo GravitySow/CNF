@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Code By GravityS
  */
 package theory;
 
@@ -22,7 +20,7 @@ public class findByNumber {
         n = g.length - 1;
     }
     
-    public void find() {
+    public void find(int num) {
         TreeSet<String> s = new TreeSet<>();
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < g[i].length - 1; j++) {;
@@ -32,7 +30,7 @@ public class findByNumber {
                 }
             }
         }
-        ArrayList<String> x = f(10,s);
+        ArrayList<String> x = f(num,s);
         
         for(String str:x){
             new Thread(() -> {
