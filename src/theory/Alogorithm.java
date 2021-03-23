@@ -18,7 +18,7 @@ public class Alogorithm {
     int n;
     int n2;
     boolean c;
-    HashMap<String, ArrayList<String>> create = new HashMap<String, ArrayList<String>>();
+    HashMap<String, Data> create = new HashMap<String, Data>();
     //Input Rule and String
     public Alogorithm(String[][] g, String str) {
         this.g = g;
@@ -92,12 +92,12 @@ public class Alogorithm {
                                     }
                                     if (s.equals(g[z][z2])) {
                                         c = true;
-                                        ArrayList<String> cre = new ArrayList<String>();
-                                        if(cre.contains(i+","+j)){
-                                            cre = create.get(i+","+j);
+                                        Data data = new Data();
+                                        if(create.containsKey(i+","+j)){
+                                            data = create.get(i+","+j);
                                         }
-                                        cre.add(g[z][z2]);
-                                        create.put(i+","+j,cre);
+                                        data.add(g[z][0],i+","+k,k+1+","+j,s1[i2],s2[j2]);
+                                        create.put(i+","+j,data);
                                     }
                                 }
                                 if (c) {
@@ -148,6 +148,10 @@ public class Alogorithm {
         return ans;
     }
     
+    /*public ArrayList<String> getInfo(String row,String col){
+        return create.get(row+","+col);
+    }*/
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = Integer.parseInt(in.nextLine());
@@ -168,7 +172,7 @@ public class Alogorithm {
             }
         }
         findByNumber f = new findByNumber(g);
-        f.find(10);
+        f.find(4);
         String str = in.nextLine();
         Alogorithm a = new Alogorithm(g, str);
         String[][] ans = a.cal();

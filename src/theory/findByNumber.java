@@ -20,28 +20,30 @@ public class findByNumber {
         n = g.length - 1;
     }
     
-    public void find(int num) {
+    public ArrayList<String> find(int num) {
         TreeSet<String> s = new TreeSet<>();
         for (int i = 1; i < n; i++) {
-            for (int j = 1; j < g[i].length - 1; j++) {;
+            for (int j = 1; j < g[i].length; j++) {
+                if(g[i][j] == null) break;
                 if (g[i][j].length() == 1) {
-                    System.out.println(g[i][j]);
                     s.add(g[i][j]);
                 }
             }
         }
         ArrayList<String> x = f(num,s);
         
+        ArrayList<String> result = new ArrayList<>();
         for(String str:x){
             new Thread(() -> {
                 Alogorithm a = new Alogorithm(g,str);
                 a.cal();
                 if(a.c){
-                    System.out.println(str);
+                    result.add(str);
+                    //System.out.println(str);
                 }
             }).run();
         }
-        
+        return result;
     }
 
     public ArrayList<String> f(int x, TreeSet<String> s) {
