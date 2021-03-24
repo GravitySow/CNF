@@ -102,6 +102,11 @@ public class gui extends javax.swing.JFrame {
         jLabel2.setText("RULE           :");
 
         clear.setText("Clear");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Angsana New", 1, 25)); // NOI18N
         jLabel3.setText("โปรแกรมการคำนวณ");
@@ -249,6 +254,12 @@ public class gui extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+        jTextArea1.setText("");
+                
+    }//GEN-LAST:event_clearActionPerformed
     public String[][] getTextToRule() {
         String text = jTextArea1.getText();
         String[] text2 = text.split("\n");
