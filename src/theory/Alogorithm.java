@@ -3,22 +3,24 @@
  */
 package theory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 /**
  *
  * @author gravitys
  */
 public class Alogorithm {
 
-    String[][] g;
+    private String[][] g;
     String str;
-    String[][] ans;
-    int n;
-    int n2;
+    private String[][] ans;
+    private int n;
+    private int n2;
     boolean c;
-    HashMap<String, Data> create = new HashMap<String, Data>();
+    private HashMap<String, Data> create = new HashMap<String, Data>();
+
     //Input Rule and String
     public Alogorithm(String[][] g, String str) {
         this.g = g;
@@ -36,28 +38,29 @@ public class Alogorithm {
 
     public Alogorithm() {
     }
-    
-    public void setStr(String str){
+
+    public void setStr(String str) {
         this.str = str;
         n2 = str.length();
     }
-    public String[][] cal(String[][] g, String str){
+
+    public String[][] cal(String[][] g, String str) {
         this.g = g;
         n = g.length - 1;
         this.str = str;
         n2 = str.length();
         this.ans = new String[n2 + 1][n2 + 1];
-        
+
         setArray(ans);
         addTable();
         calToTable();
         check();
         return ans;
     }
-    
+
     //Change
     //Frist Alogotithm
-    public void addTable() {
+    private void addTable() {
         for (int i = 1; i <= n2; i++) {
             String s = "" + str.charAt(i - 1);
             for (int j = 1; j <= n; j++) {
@@ -67,6 +70,9 @@ public class Alogorithm {
                             ans[i][i] += ",";
                         }
                         ans[i][i] += g[j][0];
+                        Data data = new Data();
+                        data.add(g[j][0], "Rule", "Rule" , "Rule", "Rule");
+                        create.put(i + "," + i, data);
                     }
                 }
             }
@@ -74,7 +80,7 @@ public class Alogorithm {
     }
 
     //Second Alogorithm
-    public void calToTable() {
+    private void calToTable() {
         for (int l = 2; l <= n2; l++) {
             for (int i = 1; i <= n2 - l + 1; i++) {
                 int j = i + l - 1;
@@ -92,21 +98,23 @@ public class Alogorithm {
                                     }
                                     if (s.equals(g[z][z2])) {
                                         c = true;
-                                        Data data = new Data();
-                                        if(create.containsKey(i+","+j)){
-                                            data = create.get(i+","+j);
-                                        }
-                                        data.add(g[z][0],i+","+k,k+1+","+j,s1[i2],s2[j2]);
-                                        create.put(i+","+j,data);
+
                                     }
                                 }
                                 if (c) {
-                                    
+
                                     if (!ans[i][j].equals("")) {
 
                                         ans[i][j] += ",";
                                     }
                                     ans[i][j] += g[z][0];
+                                    
+                                    Data data = new Data();
+                                    if (create.containsKey(i + "," + j)) {
+                                        data = create.get(i + "," + j);
+                                    }
+                                    data.add(g[z][0], i + "," + k, k + 1 + "," + j, s1[i2], s2[j2]);
+                                    create.put(i + "," + j, data);
                                 }
                             }
                         }
@@ -117,7 +125,7 @@ public class Alogorithm {
     }
 
     //Set Array to spec
-    public void setArray(String ans[][]) {
+    private void setArray(String ans[][]) {
         for (int i = 1; i < ans.length; i++) {
             for (int j = 1; j < ans[i].length; j++) {
                 ans[i][j] = "";
@@ -126,7 +134,7 @@ public class Alogorithm {
     }
 
     //Check CYK
-    public void check() {
+    private void check() {
         c = false;
         for (int i = 1; i < ans.length; i++) {
             String[] x = ans[1][i].split(",");
@@ -147,45 +155,8 @@ public class Alogorithm {
         check();
         return ans;
     }
-    
-    /*public ArrayList<String> getInfo(String row,String col){
-        return create.get(row+","+col);
-    }*/
-    
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = Integer.parseInt(in.nextLine());
-        //Rule
-        String[][] g = new String[n + 1][3];
-        //Input Rule
-        for (int i = 1; i <= n; i++) {
-            String x = in.nextLine();
-            String y[] = x.split("->");
-            g[i][0] = y[0];
-            String z[] = y[1].split("\\|");
-            for (int j = 0; j < z.length; j++) {
-                try {
-                    g[i][j + 1] = z[j];
-                } catch (Exception e) {
-                    break;
-                }
-            }
-        }
-        findByNumber f = new findByNumber(g);
-        f.find(4);
-        String str = in.nextLine();
-        Alogorithm a = new Alogorithm(g, str);
-        String[][] ans = a.cal();
-        
-        for (int i = 1; i < ans.length; i++) {
-            for (int j = 1; j < ans[i].length; j++) {
-                System.out.print(ans[i][j] + "");
-                if (ans[i][j].equals("")) {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println("");
-        }
 
+    public Data getInfo(String row, String col) {
+        return create.get(row + "," + col);
     }
 }

@@ -1,8 +1,7 @@
 package theory;
 
-
-
-
+import java.awt.FileDialog;
+import java.awt.Frame;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -10,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Admin
@@ -21,11 +19,10 @@ public class gui extends javax.swing.JFrame {
      * Creates new form gui
      */
     DefaultTableModel model;
+
     public gui() {
         initComponents();
-        
-        model = (DefaultTableModel) table.getModel();
-        
+
     }
 
     /**
@@ -41,18 +38,19 @@ public class gui extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        textField3 = new java.awt.TextField();
+        jPanel1 = new javax.swing.JPanel();
         jtext = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jword = new javax.swing.JTextField();
-        jcal = new javax.swing.JButton();
-        jclear = new javax.swing.JButton();
+        clear = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jrule = new java.awt.TextField();
         jLabel4 = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        open = new javax.swing.JButton();
+        save = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,59 +78,66 @@ public class gui extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
+        textField3.setText("textField2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 204, 255));
 
         jtext.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jtext.setText("สายอักขระ    :");
+        jtext.setText("สายอักขระ ");
 
         jLabel2.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jLabel2.setText("RULE           :");
 
-        jword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jwordActionPerformed(evt);
-            }
-        });
-
-        jcal.setText("Calculate");
-        jcal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcalActionPerformed(evt);
-            }
-        });
-
-        jclear.setText("Clear");
+        clear.setText("Clear");
 
         jLabel3.setFont(new java.awt.Font("Angsana New", 1, 25)); // NOI18N
         jLabel3.setText("โปรแกรมการคำนวณ");
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel4.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        jLabel4.setText("ความยาวสายอักขระ ");
 
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(table);
-
-        jLabel1.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jLabel1.setText("RESULT");
-
-        jrule.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("String");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jruleActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jLabel4.setText("จำนวนกฎ      :");
-
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Number");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane4.setViewportView(jTextArea1);
+
+        open.setText("open");
+        open.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openActionPerformed(evt);
+            }
+        });
+
+        save.setText("save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
             }
         });
 
@@ -140,90 +145,129 @@ public class gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(198, 198, 198))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jcal, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jclear)
-                        .addGap(32, 32, 32))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtext, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jword)
-                            .addComponent(jrule, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                        .addGap(103, 103, 103)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel3))
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(119, 119, 119)
+                                        .addComponent(jButton3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jLabel4))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(open)
+                                .addGap(35, 35, 35)
+                                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(clear))
+                            .addComponent(jScrollPane4))))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtext, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jword, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrule, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcal)
-                    .addComponent(jclear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(save)
+                    .addComponent(clear)
+                    .addComponent(open))
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jtext, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(133, 133, 133))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcalActionPerformed
-        
-        String s = jword.getText();
-        int [][] arr = new int[s.length()][];
-        for(int i=0;i<arr.length;i++){
-          model.addColumn(s.charAt(i));
-          model.addRow(arr);
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        GetString getString = new GetString(getTextToRule(), 1);
+        getString.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        GetString getString = new GetString(getTextToRule(), 2);
+        getString.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openActionPerformed
+        // TODO add your handling code here:
+        try {
+            OpenAndSave o = new OpenAndSave();
+            FileDialog fd = new FileDialog(new Frame(), "Choose a file", FileDialog.LOAD);
+            fd.setDirectory("C:\\");
+            fd.setFile("*");
+            fd.setVisible(true);
+            String location = fd.getDirectory() + "" + fd.getFile();
+            o.readFile(location);
+            
+            jTextArea1.setText(o.rule);
+        } catch (Exception e) {
+
         }
-    }//GEN-LAST:event_jcalActionPerformed
+    }//GEN-LAST:event_openActionPerformed
 
-    private void jwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jwordActionPerformed
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jwordActionPerformed
+        try{
+            OpenAndSave s = new OpenAndSave();
+            FileDialog fd = new FileDialog(new Frame(), "Choose a file", FileDialog.LOAD);
+            fd.setDirectory("C:\\");
+            fd.setFile("*");
+            fd.setVisible(true);
+            String location = fd.getDirectory() + "" + fd.getFile();
+            String rule = jTextArea1.getText();
+            s.saveFile(location, rule);
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_saveActionPerformed
+    public String[][] getTextToRule() {
+        String text = jTextArea1.getText();
+        String[] text2 = text.split("\n");
+        String[][] text3 = new String[text2.length + 1][10];
 
-    private void jruleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jruleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jruleActionPerformed
-
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+        for (int i = 0; i < text2.length; i++) {
+            String y[] = text2[i].split("->");
+            text3[i + 1][0] = y[0];
+            String z[] = y[1].split("\\|");
+            for (int j = 0; j < z.length; j++) {
+                try {
+                    text3[i + 1][j + 1] = z[j];
+                } catch (Exception e) {
+                    break;
+                }
+            }
+        }
+        return text3;
+    }
 
     /**
      * @param args the command line arguments
@@ -261,21 +305,22 @@ public class gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton clear;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JButton jcal;
-    private javax.swing.JButton jclear;
-    private java.awt.TextField jrule;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jtext;
-    private javax.swing.JTextField jword;
-    private javax.swing.JTable table;
-    private java.awt.TextField textField1;
+    private javax.swing.JButton open;
+    private javax.swing.JButton save;
+    private java.awt.TextField textField3;
     // End of variables declaration//GEN-END:variables
 }

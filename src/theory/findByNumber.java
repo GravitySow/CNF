@@ -12,8 +12,8 @@ import java.util.TreeSet;
  * @author gravitys
  */
 public class findByNumber {
-    String[][] g;
-    int n;
+    private String[][] g;
+    private int n;
     
     public findByNumber(String g[][]){
         this.g = g;
@@ -39,14 +39,13 @@ public class findByNumber {
                 a.cal();
                 if(a.c){
                     result.add(str);
-                    //System.out.println(str);
                 }
             }).run();
         }
         return result;
     }
 
-    public ArrayList<String> f(int x, TreeSet<String> s) {
+    private ArrayList<String> f(int x, TreeSet<String> s) {
         ArrayList<String> allChange = new ArrayList<>();
         ArrayList<String> all = new ArrayList<>();
         if (x > 0) {
@@ -61,6 +60,5 @@ public class findByNumber {
             allChange.add("");
         }
         return allChange;
-
     }
 }
