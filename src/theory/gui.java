@@ -2,6 +2,9 @@ package theory;
 
 import java.awt.FileDialog;
 import java.awt.Frame;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -232,7 +235,7 @@ public class gui extends javax.swing.JFrame {
             fd.setVisible(true);
             String location = fd.getDirectory() + "" + fd.getFile();
             o.readFile(location);
-            
+
             jTextArea1.setText(o.rule);
         } catch (Exception e) {
 
@@ -241,24 +244,30 @@ public class gui extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             OpenAndSave s = new OpenAndSave();
-            FileDialog fd = new FileDialog(new Frame(), "Choose a file", FileDialog.LOAD);
-            fd.setDirectory("C:\\");
-            fd.setFile("*");
-            fd.setVisible(true);
-            String location = fd.getDirectory() + "" + fd.getFile();
-            String rule = jTextArea1.getText();
-            s.saveFile(location, rule);
-        }catch(Exception e){
-            
+            JFileChooser fc = new JFileChooser();
+            fc.setDialogTitle("Save");
+            //fc.setDirectory("C:\\");
+            //fc.setFile("*");
+            fc.setVisible(true);
+            int userSelection = fc.showSaveDialog(new JFrame());
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fc.getSelectedFile();
+                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            }
+            //String location = fc.get
+            //String rule = jTextArea1.getText();
+            //s.saveFile(location, rule);
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_saveActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
         jTextArea1.setText("");
-                
+
     }//GEN-LAST:event_clearActionPerformed
     public String[][] getTextToRule() {
         String text = jTextArea1.getText();

@@ -160,4 +160,8 @@ public class Alogorithm {
     public Data getInfo(String row, String col) {
         return create.get(row + "," + col);
     }
+    
+    public void first(){
+        
+    }
 }
