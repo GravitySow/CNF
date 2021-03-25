@@ -22,7 +22,7 @@ public class findByNumber {
     
     public ArrayList<String> find(int num) {
         TreeSet<String> s = new TreeSet<>();
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             for (int j = 1; j < g[i].length; j++) {
                 if(g[i][j] == null) break;
                 if (g[i][j].length() == 1) {

@@ -249,8 +249,6 @@ public class gui extends javax.swing.JFrame {
             OpenAndSave s = new OpenAndSave();
             JFileChooser fc = new JFileChooser();
             fc.setDialogTitle("Save");
-            //fc.setDirectory("C:\\");
-            //fc.setFile("*");
             fc.setVisible(true);
             int userSelection = fc.showSaveDialog(new JFrame());
             String location = "";
