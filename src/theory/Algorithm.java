@@ -185,7 +185,7 @@ public class Algorithm {
                 break;
             }
             com.put(count,t);
-            System.out.println(t);
+            //System.out.println(t);
             //System.out.println("");
             count++;
             convert();

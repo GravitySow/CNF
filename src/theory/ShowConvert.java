@@ -20,8 +20,9 @@ public class ShowConvert extends javax.swing.JFrame {
         this.a = a;
         ans += "S => "+a.com.get(1)+"\n";
         for(int i= 2;i <= a.com.size();i++){
-            ans += "  =>"+a.com.get(i)+"\n";
+            ans += "  => "+a.com.get(i)+"\n";
         }
+        ans += "  => "+a.str;
         initComponents();
         jTextArea1.setText(ans);
         //jTextArea1.setEnabled(false);
