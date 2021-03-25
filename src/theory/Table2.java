@@ -46,7 +46,7 @@ public class Table2 extends javax.swing.JFrame {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         table.setRowHeight(40);
         for (int i = 0; i < d.rule.size(); i++) {
-            table.getColumnModel().getColumn(i).setPreferredWidth(40);
+            try{table.getColumnModel().getColumn(i).setPreferredWidth(40);}catch(Exception e){System.out.println(e);}
         }
         JScrollPane scrollPane = new JScrollPane(table);
 

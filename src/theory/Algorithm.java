@@ -21,7 +21,7 @@ public class Algorithm {
     private int n2;
     boolean c;
     private HashMap<String, Data> create = new HashMap<String, Data>();
-    public HashMap<Integer,String> com = new HashMap<Integer,String>();
+    public HashMap<Integer, String> com = new HashMap<Integer, String>();
     LinkedList<StringConvert> link = new LinkedList<>();
 
     //Input Rule and String
@@ -157,7 +157,7 @@ public class Algorithm {
         addTable();
         calToTable();
         check();
-        if(c){
+        if (c) {
             firstConvert();
         }
         return ans;
@@ -181,10 +181,10 @@ public class Algorithm {
                 t += sc.s;
                 //System.out.print(sc.s + " ");
             }
-            if(!cc){
+            if (!cc) {
                 break;
             }
-            com.put(count,t);
+            com.put(count, t);
             //System.out.println(t);
             //System.out.println("");
             count++;
@@ -203,7 +203,7 @@ public class Algorithm {
                     f.next = false;
                 } else {
                     for (int j = 0; j < d.rule.size(); j++) {
-                        
+
                         if (d.rule.get(j).equals(f.s)) {
                             //System.out.println("------1-------");
                             //System.out.println(d.channel1String.get(j) + " " + d.channel1.get(j));
