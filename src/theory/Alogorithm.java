@@ -71,7 +71,10 @@ public class Alogorithm {
                         }
                         ans[i][i] += g[j][0];
                         Data data = new Data();
-                        data.add(g[j][0], "Rule", "Rule" , "Rule", "Rule");
+                        if (create.containsKey(i + "," + i)) {
+                            data = create.get(i + "," + i);
+                        }
+                        data.add(g[j][0], "Rule", "Rule", "Rule", "Rule");
                         create.put(i + "," + i, data);
                     }
                 }
@@ -108,7 +111,7 @@ public class Alogorithm {
                                         ans[i][j] += ",";
                                     }
                                     ans[i][j] += g[z][0];
-                                    
+
                                     Data data = new Data();
                                     if (create.containsKey(i + "," + j)) {
                                         data = create.get(i + "," + j);
@@ -136,13 +139,11 @@ public class Alogorithm {
     //Check CYK
     private void check() {
         c = false;
-        for (int i = 1; i < ans.length; i++) {
-            String[] x = ans[1][i].split(",");
-            for (int j = 0; j < x.length; j++) {
-                if (x[j].equals("S")) {
-                    //System.out.println("Acc");
-                    c = true;
-                }
+        String[] x = ans[1][ans.length-1].split(",");
+        for (int j = 0; j < x.length; j++) {
+            if (x[j].equals("S")) {
+                //System.out.println("Acc");
+                c = true;
             }
         }
     }

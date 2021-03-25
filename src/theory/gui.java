@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
- * @author Admin
+ * @author gravitys
  */
 public class gui extends javax.swing.JFrame {
 

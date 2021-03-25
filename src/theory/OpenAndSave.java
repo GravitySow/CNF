@@ -42,7 +42,7 @@ public class OpenAndSave {
            
         }else{
             try {
-                FileWriter myWriter = new FileWriter(location + ".txt");
+                FileWriter myWriter = new FileWriter(location);
                 myWriter.write(rule);
                 myWriter.close();
                 JOptionPane.showMessageDialog(null, "Save File Succes");

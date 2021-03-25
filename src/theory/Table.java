@@ -47,9 +47,9 @@ public class Table extends javax.swing.JFrame {
         table = new JTable(data, header);
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        table.setRowHeight(40);
+        table.setRowHeight(60);
         for (int i = 0; i < ansT.length; i++) {
-            table.getColumnModel().getColumn(i).setPreferredWidth(40);
+            table.getColumnModel().getColumn(i).setPreferredWidth(60);
         }
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -113,7 +113,7 @@ public class Table extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(Check)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addComponent(Close)
                 .addGap(90, 90, 90))
             .addGroup(layout.createSequentialGroup()
