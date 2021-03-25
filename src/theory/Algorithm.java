@@ -5,13 +5,14 @@ package theory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
  *
  * @author gravitys
  */
-public class Alogorithm {
+public class Algorithm {
 
     private String[][] g;
     String str;
@@ -20,9 +21,11 @@ public class Alogorithm {
     private int n2;
     boolean c;
     private HashMap<String, Data> create = new HashMap<String, Data>();
+    public HashMap<Integer,String> com = new HashMap<Integer,String>();
+    LinkedList<StringConvert> link = new LinkedList<>();
 
     //Input Rule and String
-    public Alogorithm(String[][] g, String str) {
+    public Algorithm(String[][] g, String str) {
         this.g = g;
         n = g.length - 1;
         this.str = str;
@@ -31,12 +34,12 @@ public class Alogorithm {
     }
 
     //Input Rule
-    public Alogorithm(String[][] g) {
+    public Algorithm(String[][] g) {
         this.g = g;
         n = g.length - 1;
     }
 
-    public Alogorithm() {
+    public Algorithm() {
     }
 
     public void setStr(String str) {
@@ -139,7 +142,7 @@ public class Alogorithm {
     //Check CYK
     private void check() {
         c = false;
-        String[] x = ans[1][ans.length-1].split(",");
+        String[] x = ans[1][ans.length - 1].split(",");
         for (int j = 0; j < x.length; j++) {
             if (x[j].equals("S")) {
                 //System.out.println("Acc");
@@ -154,14 +157,68 @@ public class Alogorithm {
         addTable();
         calToTable();
         check();
+        if(c){
+            firstConvert();
+        }
         return ans;
     }
 
     public Data getInfo(String row, String col) {
         return create.get(row + "," + col);
     }
-    
-    public void first(){
-        
+
+    public void firstConvert() {
+        String s = 1 + "," + n2;
+        link.add(new StringConvert("S", s));
+        int count = 1;
+        while (true) {
+            boolean cc = false;
+            String t = "";
+            for (StringConvert sc : link) {
+                if (sc.next) {
+                    cc = true;
+                }
+                t += sc.s;
+                //System.out.print(sc.s + " ");
+            }
+            if(!cc){
+                break;
+            }
+            com.put(count,t);
+            System.out.println(t);
+            //System.out.println("");
+            count++;
+            convert();
+        }
+    }
+
+    private void convert() {
+        int len = link.size();
+        for (int i = 0; i < len; i++) {
+            StringConvert f = link.get(i);
+            if (f.next) {
+                Data d = create.get(f.channel);
+                if (d.channel1.get(0).equals("Rule")) {
+                    //System.out.println(f.s+" Stop");
+                    f.next = false;
+                } else {
+                    for (int j = 0; j < d.rule.size(); j++) {
+                        
+                        if (d.rule.get(j).equals(f.s)) {
+                            //System.out.println("------1-------");
+                            //System.out.println(d.channel1String.get(j) + " " + d.channel1.get(j));
+                            //System.out.println(d.channel2String.get(j) + " " + d.channel2.get(j));
+                            //System.out.println("--------------");
+                            link.add(i + 1, new StringConvert(d.channel1String.get(j), d.channel1.get(j)));
+                            link.add(i + 2, new StringConvert(d.channel2String.get(j), d.channel2.get(j)));
+                            link.remove(i);
+                            i++;
+                            len++;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ public class findByNumber {
         ArrayList<String> result = new ArrayList<>();
         for(String str:x){
             new Thread(() -> {
-                Alogorithm a = new Alogorithm(g,str);
+                Algorithm a = new Algorithm(g,str);
                 a.cal();
                 if(a.c){
                     result.add(str);

@@ -104,7 +104,7 @@ public class GetString extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (mode == 1) {
             String s = inputString.getText();
-            Alogorithm a = new Alogorithm(rule, s);
+            Algorithm a = new Algorithm(rule, s);
 
             Table table = new Table(a);
             table.setVisible(true);

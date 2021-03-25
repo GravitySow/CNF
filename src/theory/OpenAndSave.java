@@ -32,7 +32,7 @@ public class OpenAndSave {
             return true;
         } catch (Exception e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Read File Error\nCode : 400", "Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Read File Error\nCode : 400", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -42,7 +42,7 @@ public class OpenAndSave {
            
         }else{
             try {
-                FileWriter myWriter = new FileWriter(location);
+                FileWriter myWriter = new FileWriter(location+".txt");
                 myWriter.write(rule);
                 myWriter.close();
                 JOptionPane.showMessageDialog(null, "Save File Succes");

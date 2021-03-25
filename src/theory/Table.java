@@ -15,19 +15,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Table extends javax.swing.JFrame {
 
-    private Alogorithm a;
+    private Algorithm a;
     private JTable table;
     private String acc;
     /**
      * Creates new form Table
      */
-    public Table(Alogorithm a) {
+    public Table(Algorithm a) {
         this.a = a;
         String[][] ans = a.cal();
         if(a.c){
             acc = "Accept";
+            //showConvert.setVisible(true);
         }else{
             acc = "Not Accept";
+            //showConvert.setVisible(false);
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 485, 218);
@@ -57,6 +59,11 @@ public class Table extends javax.swing.JFrame {
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         initComponents();
+        if(a.c){
+            showConvert.setVisible(true);
+        }else{
+            showConvert.setVisible(false);
+        }
     }
 
     /**
@@ -73,6 +80,7 @@ public class Table extends javax.swing.JFrame {
         Check = new javax.swing.JButton();
         Close = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        showConvert = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +114,13 @@ public class Table extends javax.swing.JFrame {
         jLabel1.setText(acc);
         jLabel1.setToolTipText("");
 
+        showConvert.setText("Show Convert");
+        showConvert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showConvertActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,13 +128,17 @@ public class Table extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(Check)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
-                .addComponent(Close)
-                .addGap(90, 90, 90))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel1)
+                        .addContainerGap(269, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(showConvert)
+                        .addGap(89, 89, 89)
+                        .addComponent(Close)
+                        .addGap(90, 90, 90))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +148,8 @@ public class Table extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Check)
-                    .addComponent(Close))
+                    .addComponent(Close)
+                    .addComponent(showConvert))
                 .addGap(35, 35, 35))
         );
 
@@ -151,6 +171,11 @@ public class Table extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_CloseActionPerformed
 
+    private void showConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showConvertActionPerformed
+        // TODO add your handling code here:
+        new ShowConvert(a).setVisible(true);
+    }//GEN-LAST:event_showConvertActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,5 +186,6 @@ public class Table extends javax.swing.JFrame {
     javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton showConvert;
     // End of variables declaration//GEN-END:variables
 }
